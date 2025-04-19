@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const notFound = require('./middleware/notFoundMiddleware');
 const errorHandler = require('./middleware/errorMiddleware');
+const mealRoutes = require('./routes/mealRoutes');
 
 // Initialize Express
 const app = express();
@@ -18,6 +19,7 @@ connectDB();
 // Routes
 app.use('/api/chat', require('./routes/chatRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/meals', mealRoutes);
 // app.use('/api/orders', require('./routes/orderRoutes'));
 // app.use('/api/food', require('./routes/foodRoutes'));
 // app.use('/api/admin', require('./routes/adminRoutes'));
