@@ -1,21 +1,22 @@
 // server/routes/mealRoutes.js
+
 const express = require('express');
 const router = express.Router();
-const Meal = require('../models/Meal');
+const mealController = require('../controllers/mealController');
 
-// GET /api/meals?diet=vegan&maxPrice=100
-router.get('/', async (req, res) => {
-  const { diet, maxPrice } = req.query;
-  try {
-    const filter = {};
-    if (diet) filter.diet = diet;
-    if (maxPrice) filter.price = { $lte: Number(maxPrice) };
+// Admin route to create a meal
+router.post('/', mealController.createMeal);
 
-    const meals = await Meal.find(filter);
-    res.json(meals);
-  } catch (err) {
-    res.status(500).json({ message: 'Server Error' });
-  }
-});
+// Get all meals (available to users and admins)
+router.get('/', mealController.getAllMeals);
+
+// Get a specific meal by ID
+router.get('/:id', mealController.getMealById);
+
+// Admin route to update a meal
+router.put('/:id', mealController.updateMeal);
+
+// Admin route to delete a meal
+router.delete('/:id', mealController.deleteMeal);
 
 module.exports = router;
