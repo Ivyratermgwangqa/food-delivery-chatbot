@@ -14,19 +14,21 @@ const orderSchema = new mongoose.Schema(
       ref: 'Meal',
       required: true,
     },
+    quantity: {
+      type: Number,
+      default: 1,
+    },
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
     status: {
       type: String,
       enum: ['pending', 'confirmed', 'delivered', 'cancelled'],
       default: 'pending',
     },
-    deliveryDetails: {
-      address: { type: String, required: true },
-      eta: { type: String }, // Example: "30 min"
-      uberOrderId: { type: String }, // If linked with UberEats API
-    },
-    totalPrice: {
-      type: Number,
-      required: true,
+    eta: {
+      type: String, // Example: "30min"
     },
   },
   { timestamps: true }

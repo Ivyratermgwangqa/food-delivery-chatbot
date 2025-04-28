@@ -1,28 +1,48 @@
+// backend/routes/adminRoutes.js
 const express = require('express');
 const router = express.Router();
-const adminController = require('../controllers/adminController');
+const protect = require('../middleware/authMiddleware'); // Import the protect middleware
 
-// User Routes
-router.get('/users', adminController.getAllUsers);
-router.get('/users/:id', adminController.getUserById);
-router.post('/users', adminController.addUser);
-router.put('/users/:id', adminController.updateUser);
-router.delete('/users/:id', adminController.deleteUser);
+// Import the controller functions
+const {
+  getAllUsers,
+  getUserById,
+  addUser,
+  updateUser,
+  deleteUser,
+  getAllMeals,
+  getMealById,
+  addMeal,
+  updateMeal,
+  deleteMeal,
+  getAllOrders,
+  getOrderById,
+  updateOrderStatus,
+  deleteOrder,
+  getStatistics
+} = require('../controllers/adminController');
 
-// Meal Routes
-router.get('/meals', adminController.getAllMeals);
-router.get('/meals/:id', adminController.getMealById);
-router.post('/meals', adminController.addMeal);
-router.put('/meals/:id', adminController.updateMeal);
-router.delete('/meals/:id', adminController.deleteMeal);
+// Public routes
+router.get('/users', getAllUsers);
+router.get('/users/:id', getUserById);
+router.post('/users', addUser);
+router.put('/users/:id', updateUser);
+router.delete('/users/:id', deleteUser);
 
-// Order Routes
-router.get('/orders', adminController.getAllOrders);
-router.get('/orders/:id', adminController.getOrderById);
-router.put('/orders/:id/status', adminController.updateOrderStatus);
-router.delete('/orders/:id', adminController.deleteOrder);
+// Meal routes
+router.get('/meals', getAllMeals);
+router.get('/meals/:id', getMealById);
+router.post('/meals', addMeal);
+router.put('/meals/:id', updateMeal);
+router.delete('/meals/:id', deleteMeal);
 
-// System Overview Routes
-router.get('/stats', adminController.getStatistics);
+// Order routes
+router.get('/orders', getAllOrders);
+router.get('/orders/:id', getOrderById);
+router.put('/orders/:id', updateOrderStatus);
+router.delete('/orders/:id', deleteOrder);
+
+// System statistics route
+router.get('/statistics', getStatistics);
 
 module.exports = router;

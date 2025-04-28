@@ -1,6 +1,6 @@
-const User = require('../models/user');
-const Meal = require('../models/meal');
-const Order = require('../models/order');
+const User = require('../models/User');
+const Meal = require('../models/Meal');
+const Order = require('../models/Order');
 
 // User Management
 

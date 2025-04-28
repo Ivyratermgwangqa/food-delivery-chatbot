@@ -1,22 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const orderController = require('../controllers/orderController');  // Make sure this path is correct
 
-router.post('/', async (req, res) => {
-  const { mealId, address } = req.body;
-
-  // Mock Uber Eats API call
-  try {
-    // In production: axios.post('UBER_EATS_API_URL', { ... })
-    const mockResponse = {
-      orderId: Math.floor(Math.random() * 1000000),
-      status: 'processing',
-      estimatedDelivery: '30 mins'
-    };
-    res.json(mockResponse);
-  } catch (err) {
-    res.status(500).json({ error: 'Order failed' });
-  }
-});
+// Define routes with proper controller functions
+router.post('/order', orderController.placeOrder);  // Ensure this is a function
+router.get('/order/:orderId/:deliveryService', orderController.trackOrder);  // Ensure this is a function
+router.get('/meals', orderController.getMeals);  // Ensure this is a function
 
 module.exports = router;

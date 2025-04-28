@@ -1,22 +1,35 @@
-// server/routes/mealRoutes.js
+// backend/routes/mealRoutes.js
 
 const express = require('express');
 const router = express.Router();
-const mealController = require('../controllers/mealController');
+const {
+  createMeal,
+  getMeals,
+  getMealById,
+  updateMeal,
+  deleteMeal,
+} = require('../controllers/mealController');
 
-// Admin route to create a meal
-router.post('/', mealController.createMeal);
+// For now, assuming basic access (authentication/authorization can be added later)
 
-// Get all meals (available to users and admins)
-router.get('/', mealController.getAllMeals);
+// @route   POST /api/meals
+// @desc    Create a meal
+router.post('/', createMeal);
 
-// Get a specific meal by ID
-router.get('/:id', mealController.getMealById);
+// @route   GET /api/meals
+// @desc    Get all meals
+router.get('/', getMeals);
 
-// Admin route to update a meal
-router.put('/:id', mealController.updateMeal);
+// @route   GET /api/meals/:id
+// @desc    Get single meal by ID
+router.get('/:id', getMealById);
 
-// Admin route to delete a meal
-router.delete('/:id', mealController.deleteMeal);
+// @route   PUT /api/meals/:id
+// @desc    Update a meal
+router.put('/:id', updateMeal);
+
+// @route   DELETE /api/meals/:id
+// @desc    Delete a meal
+router.delete('/:id', deleteMeal);
 
 module.exports = router;
