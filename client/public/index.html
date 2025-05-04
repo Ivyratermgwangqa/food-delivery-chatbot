@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TastyBites - Food Delivery</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+  <style>
+    .hidden-mobile {
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .hidden-mobile {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flex flex-col">
+    <!-- Top announcement banner -->
+    <div id="announcement-banner" class="bg-green-600 text-white text-center py-2 px-4 flex items-center justify-center">
+      <span class="mr-2" id="sparkles-icon"></span>
+      <span class="font-medium">FREE DELIVERY: On all orders over R150 this week!</span>
+    </div>
+    
+    <!-- Navigation -->
+    <header id="header" class="bg-white shadow-sm border-b border-gray-100">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <a href="/" class="text-decoration-none">
+            <h1 id="logo" class="text-2xl font-bold text-green-600">TastyBites</h1>
+          </a>
+        </div>
+        
+        <nav class="hidden-mobile space-x-6">
+          <a href="#restaurants" class="text-gray-700 hover:text-gray-900">Restaurants</a>
+          <a href="#menu" class="text-gray-700 hover:text-gray-900">Menu</a>
+          <a href="#deals" class="text-gray-700 hover:text-gray-900">Deals</a>
+          <a href="#track" class="text-gray-700 hover:text-gray-900">Track Order</a>
+        </nav>
+        
+        <div class="flex items-center space-x-3">
+          <a href="/login" class="px-4 py-2 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50">Login</a>
+          <a href="/signup" id="join-button" class="px-4 py-2 rounded-md bg-green-600 text-white hover:bg-green-700">Sign Up</a>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Color scheme selector -->
+    <div class="fixed top-24 right-4 bg-white p-2 rounded-md shadow-md z-10 flex flex-col gap-2">
+      <button 
+        id="green-scheme" 
+        class="w-6 h-6 rounded-full bg-green-600 ring-2 ring-offset-2 ring-green-600"
+      ></button>
+      <button 
+        id="orange-scheme" 
+        class="w-6 h-6 rounded-full bg-orange-500"
+      ></button>
+      <button 
+        id="blue-scheme" 
+        class="w-6 h-6 rounded-full bg-sky-400"
+      ></button>
+    </div>
+    
+    <!-- Hero section -->
+    <section id="hero-section" class="flex-grow bg-white flex flex-col items-center justify-center text-center px-4 py-16">
+      <div id="promo-badge" class="bg-green-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-8">
+        ✨ Free Delivery on First Order - Use code <a href="/promo/tastynew" class="underline">TASTYNEW</a> →
+      </div>
+      
+      <h2 class="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
+        Delicious food delivered.
+      </h2>
+      
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+        Connecting you with over 2,000 restaurants in your area. Hot food delivered to your door in 30 minutes or less.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/restaurants" class="px-6 py-3 rounded-md border border-gray-200 text-gray-800 hover:bg-gray-50 font-medium">
+          View Restaurants
+        </a>
+        <a href="/order" id="get-started-button" class="px-6 py-3 rounded-md bg-green-600 text-white font-medium hover:bg-green-700 flex items-center justify-center gap-2">
+          Order Now
+          <span id="arrow-right"></span>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Food categories section -->
+    <section id="categories" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h3 id="franchises-title" class="text-2xl font-bold text-green-600 text-center mb-10">
+          Browse Popular Food Categories
+        </h3>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <!-- Burger category -->
+          <a href="/category/burgers" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-amber-600 p-6 flex items-center justify-center h-24">
+              <img src="Photos/burger1.jpg" alt="Burgers" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Burgers</h4>
+              <p class="text-gray-500 text-sm">42 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Pizza category -->
+          <a href="/category/pizza" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-red-500 p-6 flex items-center justify-center h-24">
+              <img src="Photos/Pizza.jpg" alt="Pizza" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Pizza</h4>
+              <p class="text-gray-500 text-sm">28 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Sushi category -->
+          <a href="/category/sushi" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-blue-500 p-6 flex items-center justify-center h-24">
+              <img src="Photos/Sushii.jpg" alt="Sushi" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Sushi</h4>
+              <p class="text-gray-500 text-sm">17 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Chicken category -->
+          <a href="/category/chicken" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-red-500 p-2 flex items-center justify-center h-24">
+              <img src="Photos/chicken.jpg" alt="Chicken" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Chicken</h4>
+              <p class="text-gray-500 text-sm">35 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Healthy category -->
+          <a href="/category/healthy" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-green-500 p-6 flex items-center justify-center h-24">
+              <img src="Photos/Healthy1.jpg" alt="Healthy" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Healthy</h4>
+              <p class="text-gray-500 text-sm">23 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Breakfast category -->
+          <a href="/category/breakfast" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-orange-500 p-2 flex items-center justify-center h-24">
+              <img src="Photos/breakfast.jpg" alt="Breakfast" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Breakfast</h4>
+              <p class="text-gray-500 text-sm">19 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Mexican category -->
+          <a href="/category/mexican" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-green-600 p-6 flex items-center justify-center h-24">
+              <img src="Photos/Mexican.jpg" alt="Mexican" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Mexican</h4>
+              <p class="text-gray-500 text-sm">14 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Dessert category -->
+          <a href="/category/desserts" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-pink-400 p-6 flex items-center justify-center h-24">
+              <img src="Photos/Desserts (2).jpg" alt="Desserts" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Desserts</h4>
+              <p class="text-gray-500 text-sm">21 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Indian category -->
+          <a href="/category/indian" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-yellow-400 p-2 flex items-center justify-center h-24">
+              <img src="Photos/delicious-indian-food-tray.jpg" alt="Indian" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Indian</h4>
+              <p class="text-gray-500 text-sm">16 restaurants</p>
+            </div>
+          </a>
+          
+          <!-- Pasta category -->
+          <a href="/category/Pasta" class="rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white cursor-pointer">
+            <div class="bg-red-600 p-6 flex items-center justify-center h-24">
+              <img src="Photos/Pasta.jpg" alt="Fast Food" class="h-24 w-auto object-contain">
+            </div>
+            <div class="p-4">
+              <h4 class="font-semibold text-gray-800">Pasta</h4>
+              <p class="text-gray-500 text-sm">38 restaurants</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Why Choose Us section -->
+    <section id="choose-us-section" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">Why Choose TastyBites?</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 class="text-xl font-semibold mb-3 text-green-600" id="feature-1">Fast Delivery</h3>
+              <p class="text-gray-600">Get your food delivered within 30 minutes or less. <a href="/tracking" class="underline text-green-600">Real-time tracking</a> so you know exactly when your order will arrive.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 class="text-xl font-semibold mb-3 text-green-600" id="feature-2">No Minimum Order</h3>
+              <p class="text-gray-600">Order as little or as much as you want. We don't have minimum order requirements like other delivery services.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 class="text-xl font-semibold mb-3 text-green-600" id="feature-3">2,000+ Restaurants</h3>
+              <p class="text-gray-600">Choose from a wide selection of <a href="/restaurants" class="underline text-green-600">restaurants in your area</a>, from local favorites to popular chains.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+              <h3 class="text-xl font-semibold mb-3 text-green-600" id="feature-4">Exclusive Deals</h3>
+              <p class="text-gray-600">Get access to <a href="/deals" class="underline text-green-600">special promotions and discounts</a> available only to TastyBites customers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Featured restaurants section -->
+    <section id="restaurants" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Popular Restaurants Near You</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Restaurant 1 -->
+          <a href="/restaurant/KFC" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+              <img src="Photos/THE NEW KFC LOGO PNG IN 2025 - eDigital Agency.jpeg" alt="Burger Joint" class="w-full h-52 object-cover">
+              <div class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-md text-sm">
+                4.8 ★
+              </div>
+              <div class="absolute bottom-0 left-0 bg-black bg-opacity-70 text-white px-3 py-1 m-2 rounded-md text-sm">
+                20-30 min
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-xl font-bold">KFC</h3>
+                <span class="text-sm text-gray-500">0.7 km away</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Fried chicken, burgers, shakes</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">R25 delivery fee</span>
+                <span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">Free delivery on orders over R150</span>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Restaurant 2 -->
+          <a href="/restaurant/ Wimpy" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+              <img src="Photos/wimpy-seeklogo.png" alt="Pizza Palace" class="w-full h-52 object-cover">
+              <div class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-md text-sm">
+                4.5 ★
+              </div>
+              <div class="absolute bottom-0 left-0 bg-black bg-opacity-70 text-white px-3 py-1 m-2 rounded-md text-sm">
+                30-45 min
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-xl font-bold">Wimpy</h3>
+                <span class="text-sm text-gray-500">1.2 km away</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Breakfast specials, burgers</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">R30 delivery fee</span>
+                <span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">Free delivery on orders over R150</span>
+              </div>
+            </div>
+          </a>
+          
+          <!-- Restaurant 3 (added a third one to replace the incomplete in original) -->
+          <a href="/restaurant/Spur" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="relative">
+              <img src="Photos/spur-logo.png" alt="Sushi Spot" class="w-full h-52 object-cover">
+              <div class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 m-2 rounded-md text-sm">
+                4.7 ★
+              </div>
+              <div class="absolute bottom-0 left-0 bg-black bg-opacity-70 text-white px-3 py-1 m-2 rounded-md text-sm">
+                25-40 min
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-center mb-2">
+                <h3 class="text-xl font-bold">Spur</h3>
+                <span class="text-sm text-gray-500">1.5 km away</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Grilled meat</p>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-500">R35 delivery fee</span>
+                <span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">Free delivery on orders over R150</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-800 text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">TastyBites</h3>
+            <p class="text-gray-400">The best food delivery service with thousands of restaurants to choose from.</p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Resources</h4>
+            <ul class="space-y-2">
+              <li><a href="/blog" class="text-gray-400 hover:text-white">Blog</a></li>
+              <li><a href="/faq" class="text-gray-400 hover:text-white">FAQs</a></li>
+              <li><a href="/help" class="text-gray-400 hover:text-white">Help Center</a></li>
+              <li><a href="/community" class="text-gray-400 hover:text-white">Community</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold mb-4">Company</h4>
+            <ul class="space-y-2">
+              <li><a href="/about" class="text-gray-400 hover:text-white">About Us</a></li>
+              <li><a href="/careers" class="text-gray-400 hover:text-white">Careers</a></li>
+              <li><a href="/contact" class="text-gray-400 hover:text-white">Contact</a></li>
+              <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400">
+          <p>© 2025 TastyBites. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+    
+    // Create Sparkles icon for banner and promo
+    const sparklesIcon = document.getElementById('sparkles-icon');
+    const arrowRight = document.getElementById('arrow-right');
+    
+    if (sparklesIcon) {
+      sparklesIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="M12 3v18"/><path d="M3 12h18"/><path d="m12 3-4 4"/><path d="m12 3 4 4"/><path d="m12 21-4-4"/><path d="m12 21 4-4"/><path d="m3 12 4-4"/><path d="m3 12 4 4"/><path d="m21 12-4-4"/><path d="m21 12-4 4"/></svg>';
+    }
+    
+    if (arrowRight) {
+      arrowRight.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    }
+    
+    // Color scheme handling
+    const colorSchemes = {
+      green: {
+        primary: "bg-green-600",
+        light: "bg-green-500",
+        text: "text-green-600",
+        hover: "hover:bg-green-700",
+        border: "border-green-600",
+        background: "bg-white"
+      },
+      orange: {
+        primary: "bg-orange-500",
+        light: "bg-orange-400",
+        text: "text-orange-500",
+        hover: "hover:bg-orange-600",
+        border: "border-orange-500",
+        background: "bg-white"
+      },
+      blue: {
+        primary: "bg-sky-400",
+        light: "bg-sky-300",
+        text: "text-sky-400",
+        hover: "hover:bg-sky-500", 
+        border: "border-sky-400",
+        background: "bg-white"
+      }
+    };
+    
+    // Elements to update when color scheme changes
+    const elementsToUpdate = {
+      banner: document.getElementById('announcement-banner'),
+      logo: document.getElementById('logo'),
+      joinButton: document.getElementById('join-button'),
+      promoBadge: document.getElementById('promo-badge'),
+      getStartedButton: document.getElementById('get-started-button'),
+      franchisesTitle: document.getElementById('franchises-title'),
+      feature1: document.getElementById('feature-1'),
+      feature2: document.getElementById('feature-2'),
+      feature3: document.getElementById('feature-3'),
+      feature4: document.getElementById('feature-4'),
+      chooseUsSection: document.getElementById('choose-us-section'),
+      heroSection: document.getElementById('hero-section')
+    };
+    
+    // Color scheme buttons
+    const greenScheme = document.getElementById('green-scheme');
+    const orangeScheme = document.getElementById('orange-scheme');
+    const blueScheme = document.getElementById('blue-scheme');
+    
+    // Function to update color scheme
+    function updateColorScheme(scheme) {
+      // Reset all button rings
+      greenScheme.className = "w-6 h-6 rounded-full bg-green-600";
+      orangeScheme.className = "w-6 h-6 rounded-full bg-orange-500";
+      blueScheme.className = "w-6 h-6 rounded-full bg-sky-400";
+      
+      // Add ring to selected scheme button
+      if (scheme === 'green') {
+        greenScheme.className = "w-6 h-6 rounded-full bg-green-600 ring-2 ring-offset-2 ring-green-600";
+      } else if (scheme === 'orange') {
+        orangeScheme.className = "w-6 h-6 rounded-full bg-orange-500 ring-2 ring-offset-2 ring-orange-500";
+      } else if (scheme === 'blue') {
+        blueScheme.className = "w-6 h-6 rounded-full bg-sky-400 ring-2 ring-offset-2 ring-sky-400";
+      }
+      
+      const colors = colorSchemes[scheme];
+      
+      // Update elements with new color scheme
+      elementsToUpdate.banner.className = `${colors.primary} text-white text-center py-2 px-4 flex items-center justify-center`;
+      elementsToUpdate.logo.className = `text-2xl font-bold ${colors.text}`;
+      elementsToUpdate.joinButton.className = `px-4 py-2 rounded-md ${colors.primary} text-white ${colors.hover}`;
+      elementsToUpdate.promoBadge.className = `${colors.primary} text-white px-6 py-2 rounded-full text-sm font-medium mb-8`;
+      elementsToUpdate.getStartedButton.className = `px-6 py-3 rounded-md ${colors.primary} text-white font-medium ${colors.hover} flex items-center justify-center gap-2`;
+      elementsToUpdate.franchisesTitle.className = `text-2xl font-bold ${colors.text} text-center mb-10`;
+      elementsToUpdate.feature1.className = `text-xl font-semibold mb-3 ${colors.text}`;
+      elementsToUpdate.feature2.className = `text-xl font-semibold mb-3 ${colors.text}`;
+      elementsToUpdate.feature3.className = `text-xl font-semibold mb-3 ${colors.text}`;
+      elementsToUpdate.feature4.className = `text-xl font-semibold mb-3 ${colors.text}`;
+      elementsToUpdate.chooseUsSection.className = `py-16 ${colors.background}`;
+      elementsToUpdate.heroSection.className = `flex-grow ${colors.background} flex flex-col items-center justify-center text-center px-4 py-16`;
+    }
+    
+    // Add event listeners to color scheme buttons
+    greenScheme.addEventListener('click', () => updateColorScheme('green'));
+    orangeScheme.addEventListener('click', () => updateColorScheme('orange'));
+    blueScheme.addEventListener('click', () => updateColorScheme('blue'));
+  </script>
+</body>
+</html>
